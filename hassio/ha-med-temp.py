@@ -36,3 +36,10 @@ if inputStateObject is None:
   logger.warning("===== Fail - inputStateObject: %s", inputStateObject)
 else:
   logger.warning("===== Success - inputStateObject: %s", inputStateObject)
+
+"""
+Now we get the correct value from entity_id.state
+Problem: HA doesn't support writing to a file (permission issue)
+
+We need a solution to store long term (7 days running) data to calculate the median value of those
+"""
