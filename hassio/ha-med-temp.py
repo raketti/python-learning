@@ -1,22 +1,17 @@
-#Idea is to calculate the median temperature for the past week
-
-#Probably do it by:
-
-#1. Getting the current outside temperature from ATW Heat Pump sensor
-#  - This will be done by running the script once an hour
-#2. Sample size will be h = 24 / d = 7
-#3. Once we have a sample size of h * d + 1, we remove the first sample from the list
-#4. Then we calculate the median of the sample set
-#5. This value will be:
-#  - If supported added to a Home Assistant sensor
-#  - Read from this script
-#6. Then we use an automation to control the Target Heating Temperature (manly summer / winter)
-
 # Test that we get the entity data
 
+# From: https://community.home-assistant.io/t/how-to-manually-set-state-value-of-sensor/43975/3
 #--------------------------------------------------------------------------------------------------
 # Get the state for the entity specified in the Automation Action
 #--------------------------------------------------------------------------------------------------
+
+# Data for the Automation Action required:
+
+#service: python_script.ha_med_temp
+#data:
+#  entity_id: <entity_id_from_HA>
+
+# We could hard code the Entity ID for this since we only use it now for the ATW Heat Pump (Entity ID: sensor.vilp_melcloud_outside_temperature)
 
 inputEntity = data.get('entity_id')
 inputStateObject = hass.states.get(inputEntity)
