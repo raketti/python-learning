@@ -45,6 +45,42 @@ def removeFirstLine():
 removeFirstLine()
 
 def calculateAverage():
-  pass
-  # Sum the line values and calculate average/median
+  # Initiate lists
+  str_list = []
+  int_list = []
+  
+  # Count the number of lines
+  with open(outputFile, 'r') as lc:
+    line_count = sum(1 for line in lc)
+
+  # Get the values to a list  
+  with open(outputFile) as f:
+    str_list = [line for line in f]
+
+  # remove new line characters
+  with open(outputFile) as f:
+    str_list = [line.rstrip() for line in f]
+
+  # Convert string to int
+  for x in str_list:
+    int_list.append(int(x))
+
+  # Calculate the average from the samples
+  sumOfNums = 0
+  count = 0
+  for number in int_list:
+    sumOfNums += number
+    count += 1
+    average_temp = sumOfNums / count
+
+  # Round the number to two digits
+  avg_rounded = round(average_temp, 2)
+  
+  # Convert to a string for Home Assistant
+  avg_str = str(avg_rounded)
+  
 calculateAverage()
+
+# Now that the different functions are working
+# I need to probably refactor the code so that we can remove unnecessary duplicates
+# And see how this will run in Home Assistant 
